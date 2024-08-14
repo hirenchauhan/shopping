@@ -1,0 +1,74 @@
+{% extends 'myadmin/common/layout.html'%}
+{% block content %} 
+<div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Add SubCategories</h5>
+                        <p class="m-b-0">Add Your SubCategories Here</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/myadmin/dashboard"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Add SubCategories</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+
+                <!-- Page body start -->
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Add SubCategories</h4>
+                                    <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
+                                </div>
+                                <div class="card-block">
+                                    <!-- <h4 class="sub-title">Basic Inputs</h4> -->
+                                    <form class="forms-sample" method="post" action="/myadmin/store_subcat">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                          <label for="exampleInputName1">SubCategories Name</label>
+                                          <input type="text" class="form-control" id="subcat_name" name="subcat_name" placeholder="Enter City Name">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Select Categories</label>
+                                            <select class="form-control" id="cid" name="cid">
+                                                <option value="">Select Categories.</option>
+                                                {% for row in cat %}
+                                                <option value="{{row.id}}">{{row.cat_name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                          </div>
+                                        <button type="submit" class="btn btn-primary mr-2" id="submit" name="submit">Submit</button>
+                                        <button class="btn btn-dark">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Basic Form Inputs card end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Page body end -->
+            </div>
+        </div>
+        <!-- Main-body end -->
+        <div id="styleSelector">
+
+        </div>
+    </div>
+{% endblock %}

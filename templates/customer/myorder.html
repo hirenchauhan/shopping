@@ -1,0 +1,89 @@
+{% extends 'customer/layout.html' %}
+{% block content %}
+{% load static %}
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text product-more">
+                    <a href="/customer/index"><i class="fa fa-home"></i> Home</a>
+                    <span>My Order</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section Begin -->
+
+<!-- Shopping Cart Section Begin -->
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-12">
+                {% if orders %}
+                    {% for order_info in order_details_list %}
+                    <h4 class="pb-4">Order No : #{{ order_info.order.id }}</h4>
+                    <div class="cart-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th class="p-name">Product Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in order_info.order_details %}
+                                    <tr>
+                                        <td class="cart-pic first-row">
+                                            <img src="/images/upload/{{ row.product.image }}" height="150" width="150" alt="">
+                                        </td>
+                                        <td class="cart-title first-row">
+                                            <h5><a href="/customer/product_detail/{{ row.product.id }}" style="color: black;">{{ row.product.product_name }}</a></h5>
+                                        </td>
+                                        <td class="p-price first-row">₹ {{ row.product.price }}</td>
+                                        <td class="qua-col first-row">{{ row.quantity }}</td>
+                                        <td class="total-price first-row">₹ {{ row.total_price }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="cart-buttons">
+                                <a href="{% url 'generate_invoice' order_info.order.id %}" class="primary-btn up-cart">Download Invoice</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 offset-lg-4">
+                            <div class="proceed-checkout">
+                                <ul>
+                                    <li class="total">Total <span>₹ {{ order_info.order_total }}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <hr class="p-3">
+                {% endfor %}
+                {% else %}
+                    <p>No orders found for this user.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shopping Cart Section End -->
+
+<script>
+    document.querySelectorAll('input[type="number"]').forEach(function(input) {
+        input.addEventListener('input', function() {
+            if (this.value !== '') {
+                this.form.submit();
+            }
+        });
+    });
+</script>
+{% endblock %}

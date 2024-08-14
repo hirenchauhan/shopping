@@ -1,0 +1,108 @@
+{% extends 'customer/layout.html' %}
+{% block content %}
+{% load static %}
+        <!-- Breadcrumb Section Begin -->
+        <div class="breacrumb-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb-text product-more">
+                            <a href="/customer/index"><i class="fa fa-home"></i> Home</a>
+                            <a href="#">Collection</a>
+                            <span>Shopping Cart</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Breadcrumb Section Begin -->
+    
+        <!-- Shopping Cart Section Begin -->
+        <section class="shopping-cart spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="cart-table">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th class="p-name">Product Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <!-- <th>Size</th> -->
+                                        <th>Total</th>
+                                        <th><i class="ti-close"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in cart %}
+                                    <tr>
+                                        <td class="cart-pic first-row"><img src="/images/upload/{{row.product.image}}" height="150" width="150" alt=""></td>
+                                        <td class="cart-title first-row">
+                                            <h5>{{row.product.product_name}}</h5>
+                                        </td>
+                                        <td class="p-price first-row">₹ {{row.product.price}}</td>
+                                        <td class="qua-col first-row">
+                                            <div class="quantity">
+                                                <!-- <div class="pro-qty"> -->
+                                                    <form method="post" action="/customer/cart" id="cart-form-{{ row.id }}">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="cart_id" value="{{ row.id }}">
+                                                        <input type="number" class="w-50" name="quantity" id="quantity-{{ row.id }}" value="{{ row.quantity }}" min="1">
+                                                    </form>
+                                                <!-- </div> -->
+                                            </div>
+                                        </td>
+                                        <!-- <td class="p-price first-row">{{row.size}}</td> -->
+                                        <td class="total-price first-row" id="{{row.id}}">₹ {{row.total_price}}</td>
+                                        <td class="close-td first-row">
+                                            <a href="/customer/delete_cart/{{row.id}}">
+                                              <i class="ti-close"></i>
+                                            </a>
+                                          </td>
+                                          
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="cart-buttons">
+                                    <a href="#" class="primary-btn continue-shop">Continue shopping</a>
+                                    <a href="#" class="primary-btn up-cart">Update cart</a>
+                                </div>
+                                <div class="discount-coupon">
+                                    <h6>Discount Codes</h6>
+                                    <form action="#" class="coupon-form">
+                                        <input type="text" placeholder="Enter your codes">
+                                        <button type="submit" class="site-btn coupon-btn">Apply</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 offset-lg-4">
+                                <div class="proceed-checkout">
+                                    <ul>
+                                        <li class="subtotal">Subtotal <span>₹ {{subtotal}}</span></li>
+                                        <li class="cart-total">Total <span>₹ {{subtotal}}</span></li>
+                                    </ul>
+                                    <a href="/customer/checkout" class="proceed-btn">PROCEED TO CHECK OUT</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            document.querySelectorAll('input[type="number"]').forEach(function(input) {
+                input.addEventListener('input', function() {
+                    if (this.value !== '') {
+                        this.form.submit();
+                    }
+                });
+            });
+        </script>
+        <!-- Shopping Cart Section End -->
+{% endblock %}

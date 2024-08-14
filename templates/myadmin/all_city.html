@@ -1,0 +1,89 @@
+{% extends 'myadmin/common/layout.html'%}
+{% block content %} 
+{% load static %}
+<div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">All City</h5>
+                        <p class="m-b-0">All City List</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/myadmin/dashboard"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">All City</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+
+                <!-- Page body start -->
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>All City</h4>
+                                    <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
+                                </div>
+                                <div class="card-block">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                          <thead>
+                                            <tr>
+                                              <th> # </th>
+                                              <th> City Name </th>
+                                              <th> State Name </th>
+                                              <th> Edit </th>
+                                              <th> Delete </th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            {% for row in result %}
+                                              <tr>
+                                                <td>
+                                                  {{row.id}}
+                                                </td>
+                                                <td>
+                                                  {{row.city_name}}
+                                                </td>
+                                                <td>
+                                                    {{row.state}}
+                                                </td>
+                                                <td>
+                                                    <a href="/myadmin/edit_city/{{row.id}}" class="btn btn-primary">Edit</a>
+                                                </td>
+                                                <td>
+                                                    <a href="/myadmin/del_city/{{row.id}}" class="btn btn-danger">Delete</a>
+                                                </td>
+                                              </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                      </div>
+                                </div>
+                            </div>
+                            <!-- Basic Form Inputs card end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Page body end -->
+            </div>
+        </div>
+        <!-- Main-body end -->
+        <div id="styleSelector">
+
+        </div>
+    </div>
+{% endblock %}

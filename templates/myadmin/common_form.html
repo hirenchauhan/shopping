@@ -1,0 +1,131 @@
+{% extends 'myadmin/common/layout.html'%}
+{% block content %} 
+<div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Sample page</h5>
+                        <p class="m-b-0">Lorem Ipsum is simply dummy text of the printing</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Sample page</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+
+                <!-- Page body start -->
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Basic Form Inputs</h5>
+                                    <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
+                                </div>
+                                <div class="card-block">
+                                    <h4 class="sub-title">Basic Inputs</h4>
+                                    <form class="forms-sample">
+                                      <label for="exampleInputName1">Name</label>
+                                      <div class="form-group">
+                                          <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="exampleInputEmail3">Email address</label>
+                                          <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="exampleInputPassword4">Password</label>
+                                          <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="exampleSelectGender">Gender</label>
+                                          <select class="form-control" id="exampleSelectGender">
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group">
+                                          <label>File upload</label>
+                                          <input type="file" name="img[]" class="file-upload-default">
+                                          <div class="input-group col-xs-12">
+                                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                            <span class="input-group-append">
+                                              <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                            </span>
+                                          </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="exampleInputCity1">City</label>
+                                          <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="exampleTextarea1">Textarea</label>
+                                          <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                                        </div>
+                                       
+                                          <div class="col-md-6">
+                                  <div class="form-group">
+                                  <label for="exampleInputCity1">Gender</label>
+                                    <div class="form-check">
+                                      <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input">
+                                        Male
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input">
+                                        Female
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                  <label for="exampleInputCity1">Hobby</label>
+                                    <div class="form-check">
+                                      <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="">
+                                        Default
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="">
+                                        Default
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+                                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                        <button class="btn btn-dark">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Basic Form Inputs card end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Page body end -->
+            </div>
+        </div>
+        <!-- Main-body end -->
+        <div id="styleSelector">
+
+        </div>
+    </div>
+{% endblock %}

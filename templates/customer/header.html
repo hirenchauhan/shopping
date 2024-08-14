@@ -1,0 +1,157 @@
+{% load static %}
+<header class="header-section">
+    <div class="header-top">
+        <div class="container">
+            <div class="ht-left">
+                <div class="mail-service">
+                    <i class=" fa fa-envelope"></i>
+                    chauhanhiren063@gmail.com
+                </div>
+                <div class="phone-service">
+                    <i class=" fa fa-phone"></i>
+                    +91 76003 87784
+                </div>
+            </div>
+            <div class="ht-right">
+                {% if request.user.is_authenticated %}
+                    <a href="/customer/logout" class="login-panel"><i class="fa fa-user"></i>Logout</a>
+                {% else %}
+                    <a href="/customer/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                {% endif %}
+                <!-- <div class="top-social">
+                    <a href="#"><i class="ti-facebook"></i></a>
+                    <a href="#"><i class="ti-twitter-alt"></i></a>
+                    <a href="#"><i class="ti-linkedin"></i></a>
+                    <a href="#"><i class="ti-pinterest"></i></a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="inner-header">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <div class="logo">
+                        <a href="/customer/index">
+                            <img src="{% static 'customer/img/logo.png' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7">
+                    <div class="advanced-search">
+                        <!-- <button type="button" class="category-btn">All Categories</button> -->
+                        <form action="#" class="input-group">
+                            <input type="text" placeholder="What do you need?" id="search" name="search" style="color: black;">
+                            <button type="button" style="width: 100px;"><i class="ti-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-3 text-right col-md-3">
+                    <ul class="nav-right">
+                        <li class="heart-icon"><a href="#">
+                                <i class="icon_heart_alt"></i>
+                                <span>1</span>
+                            </a>
+                        </li>
+                    </li>
+                        <li class="cart-icon"><a href="/customer/cart">
+                                <i class="icon_bag_alt"></i>
+                                <span>{{count}}</span>
+                            </a>
+                            <!-- <div class="cart-hover">
+                                <div class="select-items">
+                                    
+                                </div>
+                                <div class="select-total">
+                                    <span>total:</span>
+                                    <h5>₹ {{subtotal}}</h5>
+                                </div>
+                                <div class="select-button">
+                                    <a href="/customer/cart" class="primary-btn view-card">VIEW CARD</a>
+                                    <a href="/customer/checkout" class="primary-btn checkout-btn">CHECK OUT</a>
+                                </div>
+                            </div> -
+                            ->
+                        </li>
+                        <!-- <li class="cart-price">$150.00</li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-item">
+        <div class="container">
+            <div class="nav-depart">
+                <div class="depart-btn">
+                    <i class="ti-menu"></i>
+                    <span>All Collection</span>
+                    <ul class="depart-hover">
+                        {% for row in category %}
+                            <li><a href="{% url 'product_list' row.id %}">{{row.cat_name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <nav class="nav-menu mobile-menu">
+                <ul>
+                    <li class="active"><a href="/customer/index">Home</a></li>
+                    <!-- <li><a href="./shop.html">Shop</a></li> -->
+                    <!-- <li><a href="#">Collection</a>
+                        <ul class="dropdown">
+                            {% for row in category %}
+                                <li><a href="{% url 'product_list' row.id %}">{{row.cat_name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li> -->
+                    <li><a href="/customer/register">Register</a></li>
+                    <li class=""><a href="/customer/contact">Contact</a></li>
+                    <li class=""><a href="/customer/saler_reg">Saler</a></li>
+                    <li class=""><a href="/customer/myorder">My Order</a></li>
+                </ul>
+            </nav>
+            <div id="mobile-menu-wrap"></div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            var selectedUrl = '';
+        
+            $("#search").autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: "{% url 'autocomplete' %}",
+                        data: {
+                            term: request.term
+                        },
+                        success: function(data) {
+                            response($.map(data, function(item) {
+                                return {
+                                    label: item.name,
+                                    value: item.name,
+                                    url: item.url
+                                };
+                            }));
+                        }
+                    });
+                },
+                select: function(event, ui) {
+                    selectedUrl = ui.item.url;
+                }
+            });
+        
+            $(".input-group").submit(function(event) {
+                event.preventDefault();
+                if (selectedUrl) {
+                    window.location.href = selectedUrl;
+                }
+            });
+        
+            $(".input-group button").click(function() {
+                $(".input-group").submit();
+            });
+        });
+        </script>
+</header>

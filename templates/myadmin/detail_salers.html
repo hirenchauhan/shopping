@@ -1,0 +1,163 @@
+{% extends 'myadmin/common/layout.html'%}
+{% block content %} 
+{% load static %}
+<div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Detail Saler</h5>
+                        <p class="m-b-0">All Detail List</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/myadmin/dashboard"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">All Detail</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+
+                <!-- Page body start -->
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Saler Detail</h4>
+                                    <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
+                                </div>
+                                <div class="card-block">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                  <th>
+                                                    #
+                                                  </th>
+                                                  <td>
+                                                     {{result.id}}
+                                                  </td>
+                                                </tr>
+                                              </thead>
+                                                        <tbody>
+                                                <tr>
+                                                  <th>
+                                                      First Name
+                                                  </th>
+                                                  <td>
+                                                    {{result.user.first_name}}
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <th>
+                                                      Last Name
+                                                  </th>
+                                                  <td>
+                                                    {{result.user.last_name}}
+                                                  </td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                  <th>
+                                                      Email
+                                                  </th>
+                                                  <td>
+                                                    {{result.user.email}}
+                                                  </td>
+                                                </tr>
+                                               
+                                                <tr>
+                                                  <th>
+                                                      State
+                                                  </th>
+                                                  <td>
+                                                    {{result.state}}
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <th>
+                                                      City
+                                                  </th>
+                                                  <td>
+                                                    {{result.city}}
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <th>
+                                                      Area
+                                                  </th>
+                                                  <td>
+                                                    {{result.area}}
+                                                  </td>
+                                                </tr>
+                                                 <tr>
+                                                  <th>
+                                                      Shop name
+                                                  </th>
+                                                  <td>
+                                                    {{result.shop_name}}
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <th>
+                                                      Shop address
+                                                  </th>
+                                                  <td>
+                                                    {{result.shop_address}}
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <th>
+                                                      Shop contact
+                                                  </th>
+                                                  <td>
+                                                    {{result.shop_contact}}
+                                                  </td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                  <th>
+                                                      Image
+                                                  </th>
+                                                  <td>
+                                                   <img src="/images/upload/{{result.image}}" height="150" width="150">
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <th>
+                                                      Username
+                                                  </th>
+                                                  <td>
+                                                     {{result.user.username}}
+                                                  </td>
+                                                </tr>
+                                               
+                                              </tbody>
+                                        </table>
+                                      </div>
+                                </div>
+                            </div>
+                            <!-- Basic Form Inputs card end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Page body end -->
+            </div>
+        </div>
+        <!-- Main-body end -->
+        <div id="styleSelector">
+
+        </div>
+    </div>
+{% endblock %}

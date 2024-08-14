@@ -1,0 +1,152 @@
+{% extends 'customer/layout.html' %}
+{% block content %}
+{% load static %}
+    <!-- Breadcrumb Section Begin -->
+    <div class="breacrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text product-more">
+                        <a href="/customer/index"><i class="fa fa-home"></i> Home</a>
+                        <a href="#">Collection</a>
+                        <span>Check Out</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Section Begin -->
+
+    <!-- Shopping Cart Section Begin -->
+    <section class="checkout-section spad">
+        <div class="container">
+            <form action="/customer/store_checkout" class="checkout-form" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="checkout-content">
+                            <a href="#" class="content-btn">Click Here To Login</a>
+                        </div>
+                        <h4>Biiling Details</h4>
+                        <div class="row">
+                            <div class="control-group col-sm-6">
+                                <label>First Name :</label>
+                                <input type="text" class="form-control p-4" id="firstname" name="firstname" placeholder="First Name"
+                                    required="required" data-validation-required-message="Please enter your first name" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-sm-6">
+                                <label>Last Name :</label>
+                                <input type="text" class="form-control p-4" id="lastname" name="lastname" placeholder="Last Name"
+                                    required="required" data-validation-required-message="Please enter your last name" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-sm-12">
+                                <label>Address :</label>
+                                <textarea class="form-control py-3 px-4" rows="2" id="address" name="address" placeholder="Address"
+                                    required="required"
+                                    data-validation-required-message="Please enter your address"></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-sm-4">
+                                <label>State :</label>
+                                <select class="form-control" name="state" id="state">
+                                    <option value="" selected>Select State</option>
+                                    {% for row in state %}
+                                    <option value="{{row.id}}">{{row.state_name}}</option>
+                                    {% endfor %}
+                                </select>
+                                <required="required" data-validation-required-message="Please enter your State" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-sm-4 pb-3">
+                                <label>City :</label>
+                                <select class="form-control" id="city" name="city">
+                                    <option value="AL" selected>Select City</option>
+                                    {% for row in city %}
+                                    <option value="{{row.id}}">{{row.city_name}}</option>
+                                    {% endfor %}
+                                </select>
+                                <required="required" data-validation-required-message="Please enter your City" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-sm-4">
+                                <label>Area :</label>
+                                <select class="form-control" name="area" id="area">
+                                    <option value="AL" selected>Select Area</option>
+                                    {% for row in area %}
+                                    <option value="{{row.id}}">{{row.area_name}}</option>
+                                    {% endfor %}
+                                </select>
+                                <required="required" data-validation-required-message="Please enter your Area" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-sm-12">
+                                <label>Postcode / ZIP (optional) :</label>
+                                <input type="text" class="form-control p-4" id="pincode" name="pincode" placeholder="Postcode / ZIP"
+                                    required="required" data-validation-required-message="Please enter your Postcode / ZIP" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Email :</label>
+                                <input type="email" class="form-control p-4" id="email" name="email" placeholder="Email"
+                                    required="required" data-validation-required-message="Please enter your Email" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="col-lg-6">
+                                <label>Phone :</label>
+                                <input type="number" class="form-control p-4" id="contact" name="contact" placeholder="Phone"
+                                    required="required" data-validation-required-message="Please enter your Phone" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="checkout-content">
+                            <input type="text" placeholder="Enter Your Coupon Code">
+                        </div>
+                        <div class="place-order">
+                            <h4>Your Order</h4>
+                            <div class="order-total">
+                                <ul class="order-table">
+                                    <li>Product <span>Total</span></li>
+                                    {% for row in cart %}
+                                        <li class="fw-normal">{{row.product.product_name}}  x  {{row.quantity}} <span>₹ {{row.total_price}}</span></li>
+                                        <input type="hidden" class="form-control" id="saler_id" name="saler_id" value="{{row.product.saler_reg_id}}" >
+                                        <input type="hidden" class="form-control" id="product_id" name="product_id" value="{{row.product_id}}" >
+                                        <input type="hidden" class="form-control" id="quantity" name="quantity" value="{{row.quantity}}" >
+                                        <input type="hidden" class="form-control" id="size" name="size" value="{{row.size}}" >
+                                        <input type="hidden" class="form-control" id="total_price" name="total_price" value="{{row.total_price}}" >
+                                    {% endfor %}
+                                    <li class="fw-normal">Subtotal <span>₹ {{subtotal}}</span></li>
+                                    <li class="total-price">Total <span>₹ {{subtotal}}</span></li>
+                                    <input type="hidden" class="form-control" id="amount" name="amount" value="{{subtotal}}" >
+                                </ul>
+                                <div class="payment-check">
+                                    <div class="pc-item">
+                                        <label for="pc-check">
+                                            COD
+                                            <input type="radio" id="pc-check" name="payment" value="cod">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                    <div class="pc-item">
+                                        <label for="pc-paypal">
+                                            Paypal
+                                            <input type="radio" id="pc-paypal" name="payment" value="paypal">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="order-btn">
+                                    <button type="submit" name="submit" id="submit" class="site-btn place-btn">Place Order</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+{% endblock %}

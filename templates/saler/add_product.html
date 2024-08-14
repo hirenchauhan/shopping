@@ -1,0 +1,124 @@
+{% extends 'saler/common/layout.html'%}
+{% block content %} 
+<div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Add Product</h5>
+                        <p class="m-b-0">Add Your Product Here</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/saler/dashboard"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Add Product</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+
+                <!-- Page body start -->
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Add Product</h4>
+                                    <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
+                                </div>
+                                <div class="card-block">
+                                    <!-- <h4 class="sub-title">Basic Inputs</h4> -->
+                                    <form class="forms-sample" method="post" action="/saler/store_product" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                          <label for="exampleInputName1">Product Name</label>
+                                          <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Enter City Name">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputName1">Select Categories</label>
+                                            <select class="form-control" id="cid" name="cid">
+                                                <option value="">Select Categories.</option>
+                                                {% for row in categories %}
+                                                <option value="{{row.id}}">{{row.cat_name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                          </div>
+
+                                          <div class="form-group">
+                                            <label for="exampleInputName1">Select SubCategories</label>
+                                            <select class="form-control" id="scid" name="scid">
+                                                <option value="">Select subcategories.</option>
+                                                {% for row in subcategories %}
+                                                <option value="{{row.id}}">{{row.subcat_name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="exampleInputName1">Price</label>
+                                            <input type="number" class="form-control" id="price" name="price" placeholder="Enter Price">
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="exampleInputName1">Quantity</label>
+                                            <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Enter Quantity">
+                                          </div>
+                                            <div class="form-group">
+                                            <label for="exampleInputName1">Size</label>
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input" name="size[]" id="chk1" value="s">S
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input" name="size[]" id="chk2" value="m">M
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input" name="size[]" id="chk3" value="l">L
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input type="checkbox" class="form-check-input" name="size[]" id="chk4" value="xl">XL
+                                                    </label>
+                                                </div>
+                                            </div>
+                                          <div class="form-group">
+                                            <label for="exampleTextarea1">Details</label>
+                                            <textarea class="form-control" id="details" name="details" rows="4"></textarea>
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="email">Image</label>
+                                              <input type="file" class="form-control" id="image" name="image" placeholder="Your image">
+                                              
+                                          </div>
+                                        <button type="submit" class="btn btn-primary mr-2" id="submit" name="submit">Submit</button>
+                                        <button class="btn btn-dark">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Basic Form Inputs card end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Page body end -->
+            </div>
+        </div>
+        <!-- Main-body end -->
+        <div id="styleSelector">
+
+        </div>
+    </div>
+{% endblock %}

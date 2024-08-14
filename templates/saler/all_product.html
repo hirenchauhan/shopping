@@ -1,0 +1,100 @@
+{% extends 'saler/common/layout.html'%}
+{% block content %} 
+{% load static %}
+<div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">All Product</h5>
+                        <p class="m-b-0">All Product List</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/myadmin/dashboard"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">All Product</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+
+                <!-- Page body start -->
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>All Product</h4>
+                                    <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
+                                </div>
+                                <div class="card-block">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                  <th>id</th>
+                                                  <th>Category</th>
+                                                  <th>SubCategory</th>
+                                                  <th>Product name</th>
+                                                  <th>Image</th>
+                                                  <th>Price</th>
+                                                  <th>Details</th>
+                                                  <th>Size</th>
+                                                  <th>Quantity</th>
+                                                  <th>Edit</th>
+                                                  <th>Delete</th>
+                                                  
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                {% for row in product %}
+                                                <tr class="active">
+                                                    <td>{{row.id}}</td>
+                                                    <td>{{row.categories}}</td>
+                                                    <td>{{row.subcategories}}</td>
+                                                    <td>{{row.product_name}}</td>
+                                                    <td><img src="/images/upload/{{row.image}}" height="100" width="100"></td>
+                                                    <td>{{row.price}}</td>
+                                                    <td>{{row.details}}</td>
+                                                    <td>{{row.size}}</td>
+                                                    <td>{{row.quantity}}</td>
+                    
+                    
+                                                    <td>
+                                                        <a href="/saler/edit_product/{{row.id}}"><button class="btn btn-success">Edit</button></a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="/saler/delete_product/{{row.id}}"><button class="btn btn-danger">Delete</button></a>
+                                                    </td>
+                    
+                                                    
+                                                </tr>
+                                                {% endfor %}
+                                              </tbody>
+                                        </table>
+                                      </div>
+                                </div>
+                            </div>
+                            <!-- Basic Form Inputs card end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Page body end -->
+            </div>
+        </div>
+        <!-- Main-body end -->
+        <div id="styleSelector">
+
+        </div>
+    </div>
+{% endblock %}

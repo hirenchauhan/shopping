@@ -1,0 +1,141 @@
+{% extends 'customer/layout.html' %}
+{% block content %}
+{% load static %}
+<!-- Breadcrumb Section Begin -->
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <a href="/customer/index"><i class="fa fa-home"></i> Home</a>
+                    <span>Saler Register</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section Begin -->
+{% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+<div class="register-login-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="register-form">
+                    <h2>Saler Register</h2>
+                    <form name="sentMessage" id="contactForm" novalidate="novalidate" method="post" action="/customer/store_reg" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="control-group col-sm-6 pb-3">
+                                <label>First Name :</label>
+                                <input type="text" class="form-control p-4" id="first_name" name="first_name" placeholder="First Name"
+                                    required="required" data-validation-required-message="Please enter your first name" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-sm-6 pb-3">
+                                <label>Last Name :</label>
+                                <input type="text" class="form-control p-4" id="last_name" name="last_name" placeholder="Last Name"
+                                    required="required" data-validation-required-message="Please enter your last name" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-sm-12 pb-3">
+                                <label>User Name :</label>
+                                <input type="text" class="form-control p-4" id="username" name="username" placeholder="UserName"
+                                    required="required" data-validation-required-message="Please enter your last name" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-sm-12 pb-3">
+                                <label>Email address :</label>
+                                <input type="email" class="form-control p-4" id="email" name="email" placeholder="Email"
+                                    required="required" data-validation-required-message="Please enter your email" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-sm-12 pb-3">
+                                <label>Shop Name :</label>
+                                <input type="text" class="form-control p-4" id="shop_name" name="shop_name" placeholder="Shop Name"
+                                    required="required" data-validation-required-message="Please enter your Shop Name" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-sm-12 pb-3">
+                                <label>Shop Address :</label>
+                                <textarea class="form-control py-3 px-4" rows="2" id="shop_address" name="shop_address" placeholder="Shop Address"
+                                    required="required"
+                                    data-validation-required-message="Please enter your Shop Address"></textarea>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            
+                            <div class="control-group col-sm-12 pb-3">
+                                <label>Shop Contact :</label>
+                                <input type="number" class="form-control p-4" id="shop_contact" name="shop_contact" placeholder="Shop Contact"
+                                    required="required" data-validation-required-message="Please enter your Shop Contact" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            
+                            <div class="control-group col-sm-4">
+                                <label>State :</label>
+                                <select class="form-control" name="state" id="state">
+                                    <option value="" selected>Select State</option>
+                                    {% for row in state %}
+                                    <option value="{{row.id}}">{{row.state_name}}</option>
+                                    {% endfor %}
+                                </select>
+                                <required="required" data-validation-required-message="Please enter your State" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-sm-4 pb-3">
+                                <label>City :</label>
+                                <select class="form-control" id="city" name="city">
+                                    <option value="AL" selected>Select City</option>
+                                    {% for row in city %}
+                                    <option value="{{row.id}}">{{row.city_name}}</option>
+                                    {% endfor %}
+                                </select>
+                                <required="required" data-validation-required-message="Please enter your City" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-sm-4">
+                                <label>Area :</label>
+                                <select class="form-control" name="area" id="area">
+                                    <option value="AL" selected>Select Area</option>
+                                    {% for row in area %}
+                                    <option value="{{row.id}}">{{row.area_name}}</option>
+                                    {% endfor %}
+                                </select>
+                                <required="required" data-validation-required-message="Please enter your Area" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-sm-12 pb-3">
+                                <label>Shop image :</label>
+                                <input type="file" class="form-control p-4" id="shop_image" name="shop_image" placeholder="Confirm Password"
+                                    required="required" data-validation-required-message="Please enter your Confirm Password" />
+                                <p class="help-block text-danger"></p>
+                            		</div>
+                            <div class="control-group col-sm-6 pb-3">
+                                <label>Password :</label>
+                                <input type="password" class="form-control p-4" id="password" name="password" placeholder="Password"
+                                    required="required" data-validation-required-message="Please enter your password" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="control-group col-sm-6 pb-3">
+                                <label>Confirm Password :</label>
+                                <input type="password" class="form-control p-4" id="cpassword" name="cpassword" placeholder="Confirm Password"
+                                    required="required" data-validation-required-message="Please enter your Confirm Password" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <button type="submit" class="site-btn register-btn" name="submit" id="submit">REGISTER</button>
+                        </div>
+                    </form>
+                    <div class="switch-login">
+                        <a href="/saler/login" class="or-login">Or Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

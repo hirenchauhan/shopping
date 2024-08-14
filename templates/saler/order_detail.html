@@ -1,0 +1,172 @@
+{% extends 'saler/common/layout.html'%}
+{% block content %} 
+{% load static %}
+<div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Detail Order</h5>
+                        <p class="m-b-0">All Detail Order</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/myadmin/dashboard"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">All Detail Order</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+
+                <!-- Page body start -->
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Customer & Shiiping Detail</h4>
+                                    <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
+                                </div>
+                                <div class="card-block">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                  <th>
+                                                    #
+                                                  </th>
+                                                  <td>
+                                                     {{order.id}}
+                                                  </td>
+                                                </tr>
+                                              </thead>
+                                                <tbody>
+                                                <tr>
+                                                  <th>
+                                                      Customer Name
+                                                  </th>
+                                                  <td>
+                                                    {{billing.firstname}} {{billing.lastname}} 
+                                                  </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>
+                                                        Contact
+                                                    </th>
+                                                    <td>
+                                                      {{billing.contact}}
+                                                    </td>
+                                                  </tr>
+                                                
+                                                <tr>
+                                                  <th>
+                                                      Email
+                                                  </th>
+                                                  <td>
+                                                    {{billing.email}}
+                                                  </td>
+                                                </tr>
+                                               
+                                                <tr>
+                                                  <th>
+                                                      State
+                                                  </th>
+                                                  <td>
+                                                    {{billing.state}}
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <th>
+                                                      City
+                                                  </th>
+                                                  <td>
+                                                    {{billing.city}}
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <th>
+                                                      Area
+                                                  </th>
+                                                  <td>
+                                                    {{billing.area}}
+                                                  </td>
+                                                </tr>
+                                                 <tr>
+                                                  <th>
+                                                      Shiiping Address
+                                                  </th>
+                                                  <td>
+                                                    {{billing.address}}
+                                                  </td>
+                                                </tr>
+
+                                               
+                                              </tbody>
+                                        </table>
+                                      </div>
+                                </div>
+                            </div>
+                            <!-- Basic Form Inputs card end -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Product Details </h4>
+                                    <!-- <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span> -->
+                                </div>
+                                <div class="card-block">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                  <th>Id</th>
+                                                  <th>Product Image</th>
+                                                  <th>Product Name</th>
+                                                  <th>Quantity</th>
+                                                  <th>Size</th>
+                                                  <th>Amount</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                {% for row in order_details %}
+                                                <tr class="active">
+                                                    <td>{{row.product.id}}</td>
+                                                    <td><img src="/images/upload/{{row.product.image}}" height="100" width="100"></td>
+                                                    <td>{{row.product.product_name}}</td>
+                                                    <td>{{row.quantity}}</td>
+                                                    <td>{{row.size}}</td>
+                                                    <td>₹ {{row.amount}}</td>  
+                                                </tr>
+                                                {% endfor %}
+                                                <tr>
+                                                    <td colspan="5"><h5>Total</h5></td>
+                                                    <!-- <td></td> -->
+                                                    <td><h5>₹ {{order.amount}}</h5></td>
+
+                                                </tr>
+                                              </tbody>
+                                        </table>
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Page body end -->
+            </div>
+        </div>
+        <!-- Main-body end -->
+        <div id="styleSelector">
+
+        </div>
+    </div>
+{% endblock %}
